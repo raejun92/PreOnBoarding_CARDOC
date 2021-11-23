@@ -1,0 +1,6 @@
+export const statusCode = {
+	OK: 200,
+	BAD_REQUEST: 400,
+	AUTHORIZED: 401,
+	INTERNAL_SERVER_ERROR: 500
+};

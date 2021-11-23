@@ -1,23 +1,27 @@
-import express from ('express');
-import path from ('path');
-import cookieParser from ('cookie-parser');
-import morgan from ('morgan');
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import morgan from 'morgan';
+import helmet from 'helmet';
+import 'express-async-errors';
 
-// var express = require('express');
-// var path = require('path');
-// var cookieParser = require('cookie-parser');
-// var logger = require('morgan');
-
-const indexRouter = require('./routes/index');
+import authRouter from './routes/authRouter.js';
 
 const app = express();
 
 app.use(morgan('dev'));
+app.use(helmet());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public'))); 
 
-app.use('/', indexRouter);
+app.use('/auth', authRouter);
 
-module.exports = app;
+app.use((req, res, next) => {
+	res.sendStatus(404);
+});
+
+app.use((error, req, res, next) => {
+	console.error(error);
+	res.sendStatus(500);
+})
+// sequelize.sync().then(app.listen(4000)).catch(console.log);
+app.listen(4000);
