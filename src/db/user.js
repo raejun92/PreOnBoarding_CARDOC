@@ -1,12 +1,13 @@
 import SQ from 'sequelize';
+import { sequelize } from './index.js';
 
 const DataTypes = SQ.DataTypes;
 
-export const User = (sequelize) => sequelize.define('user', {
+export const User = sequelize.define('user', {
 	id: {
 		type: DataTypes.INTEGER,
-		autoIncrement: true,
 		allowNull: false,
+		autoIncrement: true,
 		primaryKey: true,
 	},
 	userId: {
@@ -17,4 +18,4 @@ export const User = (sequelize) => sequelize.define('user', {
 		type: DataTypes.STRING(64),
 		allowNull: false,
 	}
-});
+}, {timestamps: false});

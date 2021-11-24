@@ -1,7 +1,5 @@
-import { Sequelize } from 'sequelize';
-
-import { User } from './user.js';
 import { config } from '../config.js';
+import { Sequelize } from 'sequelize';
 
 export const sequelize = new Sequelize(
 	config.db.database,
@@ -10,8 +8,7 @@ export const sequelize = new Sequelize(
 	{
 		host: config.db.host,
 		dialect: 'mysql',
-		logging: false,
+		logging: true,
 	}
 );
 
-User(sequelize);

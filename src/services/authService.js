@@ -1,15 +1,6 @@
-import 'express-async-errors';
+import { User } from '../db/user.js';
 
-let users = [
-	{
-		id: 'aaa',
-		password: 'abc123',
-	},
-];
-
-export const createUser = async (newbieData) => {
-	users.push(newbieData);
-
-	return newbieData;
+export async function createUser(newbieData) {
+	return User.create(newbieData).then();
 }
 
