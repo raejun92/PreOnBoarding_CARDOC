@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import 'express-async-errors';
 
 import authRouter from './routes/authRouter.js';
-import { sequelize } from './db/index.js';
+import { sequelize } from './models/index.js';
 import { config } from './config.js';
 
 const app = express();

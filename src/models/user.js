@@ -21,21 +21,3 @@ User.init({
 		allowNull: false,
 	}
 }, {sequelize, ModelName: 'user', timestamps: false});
-
-
-// export const User = sequelize.define('user', {
-// 	id: {
-// 		type: DataTypes.INTEGER,
-// 		allowNull: false,
-// 		autoIncrement: true,
-// 		primaryKey: true,
-// 	},
-// 	userId: {
-// 		type: DataTypes.STRING(64),
-// 		allowNull: false,
-// 	},
-// 	password: {
-// 		type: DataTypes.STRING(64),
-// 		allowNull: false,
-// 	}
-// }, {timestamps: false});
