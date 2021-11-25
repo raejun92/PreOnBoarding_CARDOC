@@ -6,6 +6,7 @@ import 'express-async-errors';
 
 import authRouter from './routes/authRouter.js';
 import { sequelize } from './db/index.js';
+import { config } from './config.js';
 
 const app = express();
 
@@ -33,4 +34,4 @@ sequelize.sync().then(() => {
 	*/
 
 }).catch();
-app.listen(4000);
+app.listen(config.port);
