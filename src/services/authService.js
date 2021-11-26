@@ -1,3 +1,4 @@
+import 'express-async-errors';
 import { User } from '../models/user.js';
 
 export const createUser = async (newbieData) => {

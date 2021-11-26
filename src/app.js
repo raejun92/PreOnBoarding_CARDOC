@@ -1,10 +1,11 @@
+import 'express-async-errors';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
-import 'express-async-errors';
 
 import authRouter from './routes/authRouter.js';
+import infoRouter from './routes/infoRouter.js';
 import { sequelize } from './models/index.js';
 import { config } from './config.js';
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/auth', authRouter);
+app.use('/info', infoRouter);
 
 app.use((req, res, next) => {
 	res.sendStatus(404);
