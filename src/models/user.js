@@ -6,15 +6,10 @@ const DataTypes = SQ.DataTypes;
 export class User extends SQ.Model {};
 
 User.init({
-	id: {
-		type: DataTypes.INTEGER,
-		allowNull: false,
-		autoIncrement: true,
-		primaryKey: true,
-	},
 	userId: {
 		type: DataTypes.STRING(64),
 		allowNull: false,
+		primaryKey: true,
 	},
 	password: {
 		type: DataTypes.STRING(64),

@@ -35,5 +35,5 @@ sequelize.sync().then(() => {
 	.catch(err => console.log(err))
 	*/
 
-}).catch();
+}).catch(console.log);
 app.listen(config.port);
