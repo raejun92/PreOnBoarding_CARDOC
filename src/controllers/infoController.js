@@ -78,6 +78,7 @@ export const createUsersTire = async (req, res, next) => {
 				.json({ message: statusMessage.BAD_REQUEST+' '+responseMessage.DUPLICATE_USER, id, trimId });
 	}
 
+	// 각 유저의 타이어 정보 받기
 	for (const {id: userId, trimId} of userInfos) {
 		const url = `https://dev.mycar.cardoc.co.kr/v1/trim/${trimId}`;
 		let tireInfo = await axios.get(url).then(info => {
@@ -90,20 +91,20 @@ export const createUsersTire = async (req, res, next) => {
 		// trimId에 해당하는 데이터 없음
 		if (!tireInfo)
 			return res
-				.status(statusCode.BAD_REQUEST)
-				.json({ message: statusMessage.BAD_REQUEST+' '+responseMessage.NO_TRIMID_VALUE, userId, trimId });
+				.status(statusCode.INTERNAL_SERVER_ERROR)
+				.json({ message: statusMessage.INTERNAL_SERVER_ERROR+' '+responseMessage.NO_TRIMID_VALUE, userId, trimId });
 
 		// frontTire 정보 없거나 불일치
 		if (!(tireInfo.frontTire = tokeNize(tireInfo.frontTire)))
 			return res
-				.status(statusCode.BAD_REQUEST)
-				.json({ message: statusMessage.BAD_REQUEST+' '+responseMessage.INVALID_FRONTTIRE, userId, trimId });
+				.status(statusCode.INTERNAL_SERVER_ERROR)
+				.json({ message: statusMessage.INTERNAL_SERVER_ERROR+' '+responseMessage.INVALID_FRONTTIRE, userId, trimId });
 
 		// rearTire 정보 없거나 불일치
 		if (!(tireInfo.rearTire = tokeNize(tireInfo.rearTire)))
 			return res
-				.status(statusCode.BAD_REQUEST)
-				.json({ message: statusMessage.BAD_REQUEST+' '+responseMessage.INVALID_REARTIRE, userId, trimId });
+				.status(statusCode.INTERNAL_SERVER_ERROR)
+				.json({ message: statusMessage.INTERNAL_SERVER_ERROR+' '+responseMessage.INVALID_REARTIRE, userId, trimId });
 
 		tireInfos.push(tireInfo);
 	}

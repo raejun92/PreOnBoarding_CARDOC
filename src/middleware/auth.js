@@ -11,7 +11,7 @@ export const isAuth = async (req, res, next) => {
 	
 	if (!(authHeader && authHeader.startsWith('Bearer ')))
 		return res
-			.status(statusCode.BAD_REQUEST)
+			.status(statusCode.AUTHORIZED)
 			.json({ message: statusMessage.AUTHORIZED });
 	const token = authHeader.split(' ')[1];
 	jwt.verify(
