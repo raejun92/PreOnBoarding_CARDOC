@@ -29,11 +29,9 @@ export const signup = async (req, res, next) => {
 		password: encryptedPassword,
 	});
 
-	const token = createJwtToken(newbie.userId);
-
 	return res
 		.status(statusCode.OK)
-		.json({ token, message: statusMessage.OK });
+		.json({ message: statusMessage.OK });
 };
 
 // 로그인
@@ -54,9 +52,15 @@ export const login = async (req, res, next) => {
 			.status(statusCode.BAD_REQUEST)
 			.json({ message: statusMessage.BAD_REQUEST+' '+responseMessage.INVALID_LOGIN });
 	
-	const token = createJwtToken(isUser.id);
+	const token = createJwtToken(isUser.userId);
 	
+	// const cookieOption = {
+	// 	domain: req.hostname,
+	// 	expires: new Date(config.cookie.expires),
+	// }
+
 	return res
+		// .cookie(config.cookie.name, config.cookie.prefix+token, cookieOption)
 		.status(statusCode.OK)
 		.json({ token, message: statusMessage.OK });
 };

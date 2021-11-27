@@ -116,5 +116,7 @@ export const createUsersTire = async (req, res, next) => {
 	}
 
 
-	return res.status(statusCode.OK).json({ message: statusMessage.OK });
+	return res
+		.status(statusCode.OK)
+		.json({ message: statusMessage.OK });
 };

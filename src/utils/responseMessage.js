@@ -7,4 +7,5 @@ export const responseMessage = {
 	NO_TRIMID: '해당 trimId 없음',
 	INVALID_FRONTTIRE: '유효하지 않은 frontTire',
 	INVALID_REARTIRE: '유효하지 않은 rearTire',
+	NOT_FOUND: '찾을 수 없음',
 };
