@@ -24,10 +24,5 @@ export const config = {
 	jwt: {
 		secretKey: required('JWT_SECRETKEY'),
 		expiresIn: parseInt(required('JWT_EXPIRESIN', 86400)),
-	},
-	cookie: {
-		name: required('COOKIE_AUTHORIZATION', 'Authorization'),
-		prefix: required('COOKIE_PREFIX', 'Bearer '),
-		expires: parseInt(required('COOKIE_EXPIRES', 86400)),
 	}
 }
