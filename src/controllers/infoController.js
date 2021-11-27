@@ -128,7 +128,7 @@ export const getTires = async (req, res, next) => {
 	if (!isUser)
 		return res
 			.status(statusCode.BAD_REQUEST)
-			.json({ meesage: statusMessage.BAD_REQUEST+' '+responseMessage.EXIST_USER });
+			.json({ meesage: statusMessage.BAD_REQUEST+' '+responseMessage.NO_USER });
 
 	const tiresInfo = await infoService.getAllByuserId(isUser.userId);
 	
