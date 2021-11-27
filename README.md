@@ -235,6 +235,7 @@
 - 서비스: 데이터베이스에 접근하여 유저 로그인/회원가입, 타이어 정보 저장, 조회 데이터 추출
 - 미들웨어: 인증, 인가에 필요한 미들웨어를 생성
 - 유틸: cardoc에서 주어진 요청정보 저장 및 생산성 증가를 위한 메시지 추가 저장
+  - cardoc에서 주어진 statusCode만 사용(필요 메시지 추가)
 - 컨피그: jwt, db, port 등 민감정보 유출 방지, required 매소드를 이용해 default 이용 가능 
 
 
@@ -274,9 +275,10 @@
 ## 🗂 과제 확인 및 평가 API 명세서
 
 - Postman을 활용하여 API 작동 테스트를 진행했습니다. 
-- __배포된 서버 주소__ 및 자세한 API 명세는 아래에서 확인 가능합니다.
-- [🗂 API Description Link](https://documenter.getpostman.com/view/18068137/UVJWpzT4)
-- [![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/18068137/UVJWpzT4) 을 클릭하여 웹브라우저 혹은 Postman 클라이언트에 콜렉션이 로드되면
+- __배포된 서버 주소__ 및 자세한 API 명세는 아래에서 확인 가능합니다. 
+
+- [🗂 API Description Link](https://documenter.getpostman.com/view/15698210/UVJbJxog)
+- [![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/15698210/UVJbJxog) 을 클릭하여 웹브라우저 혹은 Postman 클라이언트에 콜렉션이 로드되면
    1. Variables 탭에서 서버 Host와 Port를 지정합니다. (기본값이 지정되어 있습니다.)
    2. 그후 우측 상단의 Run 버튼을 눌러 RUN ORDER 화면에 진입한 뒤 Run \[Collection Name\]을 클릭하면, 이상적인 상황에서의 테스트가 진행됩니다.
        
