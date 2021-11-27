@@ -22,3 +22,10 @@ export const createTireInfo = async (storeInfo) => {
 		return Tire.create(storeInfo);
 	});
 }
+
+export const getAllByuserId = async (userId) => {
+	return Tire.findAll({
+		attributes: { exclude: 'id' },
+		where: { userId },
+	});
+}

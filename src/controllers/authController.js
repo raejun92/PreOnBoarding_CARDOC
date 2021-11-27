@@ -54,13 +54,7 @@ export const login = async (req, res, next) => {
 	
 	const token = createJwtToken(isUser.userId);
 	
-	// const cookieOption = {
-	// 	domain: req.hostname,
-	// 	expires: new Date(config.cookie.expires),
-	// }
-
 	return res
-		// .cookie(config.cookie.name, config.cookie.prefix+token, cookieOption)
 		.status(statusCode.OK)
 		.json({ token, message: statusMessage.OK });
 };

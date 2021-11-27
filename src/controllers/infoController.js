@@ -10,7 +10,7 @@ import { responseMessage } from '../utils/responseMessage.js';
 const USER_INFO_NUMBER = 5;
 const TIRE_INFO_NUMBER = 3;
 
-// 타이어 정보
+// 타이어 정보 저장
 const createStoreInfo = ({id, trimId}, {frontTire, rearTire}) => {
 	return {
 		userId: id,
@@ -55,7 +55,7 @@ export const createUsersTire = async (req, res, next) => {
 	const userInfos = req.body;
 	const tireInfos = [];
 	let duplicateUser = [];
-
+	
 	if (userInfos.length > USER_INFO_NUMBER)
 		return res
 			.status(statusCode.BAD_REQUEST)
@@ -91,7 +91,7 @@ export const createUsersTire = async (req, res, next) => {
 		if (!tireInfo)
 			return res
 				.status(statusCode.BAD_REQUEST)
-				.json({ message: statusMessage.BAD_REQUEST+' '+responseMessage.NO_TRIMID, userId, trimId });
+				.json({ message: statusMessage.BAD_REQUEST+' '+responseMessage.NO_TRIMID_VALUE, userId, trimId });
 
 		// frontTire 정보 없거나 불일치
 		if (!(tireInfo.frontTire = tokeNize(tireInfo.frontTire)))
@@ -119,4 +119,20 @@ export const createUsersTire = async (req, res, next) => {
 	return res
 		.status(statusCode.OK)
 		.json({ message: statusMessage.OK });
+};
+
+// 타이어 정보 조회
+export const getTires = async (req, res, next) => {
+	const userId = req.query.userId;
+	const isUser = await findByuserId(userId);
+	if (!isUser)
+		return res
+			.status(statusCode.BAD_REQUEST)
+			.json({ meesage: statusMessage.BAD_REQUEST+' '+responseMessage.EXIST_USER });
+
+	const tiresInfo = await infoService.getAllByuserId(isUser.userId);
+	
+	return res
+		.status(statusCode.OK)
+		.json({ message: statusMessage.OK, tiresInfo});
 };
