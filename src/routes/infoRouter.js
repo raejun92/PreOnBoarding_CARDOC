@@ -9,5 +9,4 @@ const router = express.Router();
 router.post('/tires', isAuth, infoController.createUsersTire);
 router.get('/tires', isAuth, infoController.getTires);
 
-
 export default router;

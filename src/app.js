@@ -33,10 +33,4 @@ app.use((error, req, res, next) => {
 sequelize.sync().then(() => {
 	console.log("connected DB & Server start");
 	app.listen(config.port);
-	/*
-	sequelize.query("show processlist")
-	.then(result => console.log(result))
-	.catch(err => console.log(err))
-	*/
-
 }).catch(console.log);
