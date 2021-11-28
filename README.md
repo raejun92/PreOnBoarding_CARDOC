@@ -43,7 +43,7 @@
 
 | **최준호** |
 |:-----:|
-<img src="https://avatars.githubusercontent.com/u/67402180?v=4" height=200 width=200> 
+|<img src="https://avatars.githubusercontent.com/u/67402180?v=4" height=200 width=200> 
 **blog**: [raejun92.log](https://velog.io/@raejun92) </br> **github**: [raejun92](https://github.com/raejun92)
 | ![sprint7](https://img.shields.io/badge/wanted-sprint7-purple)
 | [프로젝트 회고](https://velog.io/@raejun92/Assignment7-%EC%B9%B4%EB%8B%A5)
