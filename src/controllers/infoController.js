@@ -8,7 +8,6 @@ import { findByuserId } from '../services/authService.js';
 import { responseMessage } from '../utils/responseMessage.js';
 
 const USER_INFO_NUMBER = 5;
-const TIRE_INFO_NUMBER = 3;
 
 // 타이어 정보 저장
 const createStoreInfo = ({id, trimId}, {frontTire, rearTire}) => {
@@ -25,28 +24,14 @@ const createStoreInfo = ({id, trimId}, {frontTire, rearTire}) => {
 };
 
 // 타이어 정보 토큰화
-const tokeNize = (str) => {
-	let tireInfo = [];
-	const strSplit = str.replace(/\/|R/g, ' ').split(' ');
-
-	// ex: 123/45R67 R과 /를 반드시 포함
-	if (!str.includes('/') || !str.includes('R'))
-		return false;
-
-	// ex: 123R45/67 예외처리
-	if (str.indexOf('/') > str.indexOf('R')) 
+const tokenize = (rawTireInfo) => {
+	const regex = /^[0-9]{1,3}\/[0-9]{1,2}R[0-9]{1,2}/g;
+	
+	if (!regex.test(rawTireInfo))
 		return false;
 	
-	// ex: 123/45R67 R과 /로 나누었을 때 123 45 67 3개 요소
-	if (strSplit.length !== TIRE_INFO_NUMBER)
-		return false;
+	let tireInfo = rawTireInfo.replace(/\/|R/g, " ").split(' ');
 	
-	for (const element of strSplit) {
-		// ex: ㄱ123/45R67 ㄱ과 같이 숫자가 아닌 값 예외처리
-		if (isNaN(element))
-			return false;
-		tireInfo.push(Number(element));
-	}
 	return tireInfo;
 }
 
@@ -95,13 +80,13 @@ export const createUsersTire = async (req, res, next) => {
 				.json({ message: statusMessage.INTERNAL_SERVER_ERROR+' '+responseMessage.NO_TRIMID_VALUE, userId, trimId });
 
 		// frontTire 정보 없거나 불일치
-		if (!(tireInfo.frontTire = tokeNize(tireInfo.frontTire)))
+		if (!(tireInfo.frontTire = tokenize(tireInfo.frontTire)))
 			return res
 				.status(statusCode.INTERNAL_SERVER_ERROR)
 				.json({ message: statusMessage.INTERNAL_SERVER_ERROR+' '+responseMessage.INVALID_FRONTTIRE, userId, trimId });
 
 		// rearTire 정보 없거나 불일치
-		if (!(tireInfo.rearTire = tokeNize(tireInfo.rearTire)))
+		if (!(tireInfo.rearTire = tokenize(tireInfo.rearTire)))
 			return res
 				.status(statusCode.INTERNAL_SERVER_ERROR)
 				.json({ message: statusMessage.INTERNAL_SERVER_ERROR+' '+responseMessage.INVALID_REARTIRE, userId, trimId });
